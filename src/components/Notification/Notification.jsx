@@ -1,14 +1,12 @@
 import PropTypes from 'prop-types';
 import { Text } from 'utilities/Text';
 
-export const Notification = ({ message }) => {
-  return (
-    <div>
-      <Text>{message}</Text>
-    </div>
-  );
-};
+export const Notification = ({ message }) => (
+  <div role="status" aria-live="polite">
+    <Text>{message}</Text>
+  </div>
+);
 
-Notification.prototype = {
+Notification.propTypes = {
   message: PropTypes.string.isRequired,
 };

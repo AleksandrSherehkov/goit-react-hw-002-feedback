@@ -1,22 +1,43 @@
 import PropTypes from 'prop-types';
 import { Box } from 'utilities/Box';
-import { ButtonStyled } from 'components/FeedbackOptions/FeedbackOptions.styled';
+import { ButtonStyled } from './FeedbackOptions.styled';
 
-export const FeedbackOptions = ({ options, onLeaveFeedback }) => {
-  return (
-    <Box mt={5} width="300px" justifyContent="space-between" as="ul">
+export const FeedbackOptions = ({ options, onLeaveFeedback, onReset }) => (
+  <Box
+    mt={5}
+    as="div"
+    display="flex"
+    flexDirection="column"
+    alignItems="center"
+    gridGap={4}
+  >
+    <Box as="ul" display="flex" gridGap={3} listStyle="none" m={0} p={0}>
       {options.map(option => (
         <li key={option}>
-          <ButtonStyled type="button" name={option} onClick={onLeaveFeedback}>
+          <ButtonStyled
+            type="button"
+            aria-label={`Add ${option} feedback`}
+            onClick={() => onLeaveFeedback(option)}
+          >
             {option}
           </ButtonStyled>
         </li>
       ))}
     </Box>
-  );
-};
 
-FeedbackOptions.prototype = {
+    <ButtonStyled
+      type="button"
+      aria-label="Reset feedback"
+      onClick={onReset}
+      style={{ marginTop: '12px' }}
+    >
+      reset
+    </ButtonStyled>
+  </Box>
+);
+
+FeedbackOptions.propTypes = {
   options: PropTypes.arrayOf(PropTypes.string).isRequired,
   onLeaveFeedback: PropTypes.func.isRequired,
+  onReset: PropTypes.func,
 };
