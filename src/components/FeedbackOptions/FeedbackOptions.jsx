@@ -11,6 +11,7 @@ export const FeedbackOptions = ({ options, onLeaveFeedback, onReset }) => (
     alignItems="center"
     gridGap={4}
   >
+    {/* Кнопки фидбэка */}
     <Box as="ul" display="flex" gridGap={3} listStyle="none" m={0} p={0}>
       {options.map(option => (
         <li key={option}>
@@ -25,11 +26,12 @@ export const FeedbackOptions = ({ options, onLeaveFeedback, onReset }) => (
       ))}
     </Box>
 
+    {/* Кнопка сброса */}
     <ButtonStyled
       type="button"
       aria-label="Reset feedback"
       onClick={onReset}
-      style={{ marginTop: '12px' }}
+      $reset
     >
       reset
     </ButtonStyled>

@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 export const ButtonStyled = styled.button`
   border: ${({ theme }) => theme.borders.none};
@@ -18,4 +18,17 @@ export const ButtonStyled = styled.button`
     transform: translateY(5px);
     box-shadow: ${({ theme }) => theme.shadows.button};
   }
+  ${({ $reset }) =>
+    $reset &&
+    css`
+      background-color: ${({ theme }) => theme.colors.muted || '#ccc'};
+      color: ${({ theme }) => theme.colors.black || '#333'};
+      font-size: ${({ theme }) => theme.fontSizes.s};
+      padding: 6px 12px;
+      box-shadow: none;
+
+      &:hover {
+        background-color: ${({ theme }) => theme.colors.lightGray || '#bbb'};
+      }
+    `}
 `;
